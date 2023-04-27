@@ -1,1 +1,1 @@
-PySide6
+PySide2
