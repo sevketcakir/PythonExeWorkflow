@@ -14,8 +14,11 @@ permissions:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v3
@@ -40,3 +43,13 @@ jobs:
       with:
         nuitka-version: main
         script-name: main.py
+        onefile: true
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ runner.os }} Build
+        path: |
+          build/*.exe
+          build/*.bin
+          build/*.app/**/*
