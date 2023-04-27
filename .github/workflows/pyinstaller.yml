@@ -10,8 +10,8 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
       with:
         python-version: 3.8
 
@@ -19,6 +19,7 @@ jobs:
     - run: pyinstaller main.py
     # Optionally verify that it works (provided that it does not need user interaction)
     # - run: ./dist/your-code/your-code
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
+        name: ${{ runner.os }} Build
         path: dist/*
