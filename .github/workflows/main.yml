@@ -1,3 +1,4 @@
+name: Build-Module
 # Build python script into a stand-alone exe
 jobs:
   build:
